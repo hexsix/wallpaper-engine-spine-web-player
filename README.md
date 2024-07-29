@@ -1,37 +1,88 @@
-# spine-web-player-template
-A template based on the design of the live2d visualiser of the website nikke-db. Only works with animations made using the spine software and of the versions 4.0 or 4.1.
-The template will work with any animation made from spine, not restricting to animations coming only from the game Nikke: Goddess of Victory.
+# wallpaper-engine-spine-web-player
 
-# Installation
-```git clone https://github.com/Nikke-db/spine-web-player-template.git```   
+An example of creating a Spine Web Player in Wallpaper Engine.
+
+## Installation
+
+```git clone https://github.com/hexsix/wallpaper-engine-spine-web-player```
+
 Or download as .zip and extract.
 
-# How to use
+## How to use
 
-In ```animation_list.json``` add a name to your animation and give it a custom ID. This ID is extremely important.  
-As of 24th may 2023 you also need to reference the spine version of the assets, in order to call the right spine player.  
-In ```/assets```, create a folder using the ID of your animation as a name.   
-Inside ```/assets/ID``` you must import a ```ID.atlas```, ```ID.png```, and ```ID.skel```.  
-Make sure the 1st line of ```ID.atlas``` have the correct name file for ```ID.png```.  
-If everything have been done correctly, the new animated character will appear in the list, and clicking on it will open the animation on the browser.  
-Please check how it is working for spine_boy and neon if it doesn't work. Or send me a message.  
-  
-By default, the animation is paused. Click the play button on the bottom left corner.  
-You can change the current animation with the running icon in the bottom right corner.  
+Replace `./assets/sakura/` and modify `./js/main.js`
 
-# How to launch
+```js
+let current_spine;
+let spine_size = 1500;
+let spine_x = -500;
+let spine_y = 700;
+
+const create_spine_player = () => {
+
+    document.getElementById("player-container").innerHTML = "";
+
+    current_spine = new spine41.SpinePlayer("player-container", {
+        skelUrl: "./assets/sakura/sakura.skel",
+        atlasUrl: "./assets/sakura/sakura.atlas",
+        backgroundColor: "00000000",
+        alpha: true,
+        premultipliedAlpha: true,
+        preserveDrawingBuffer: true,
+        animations: ['idle', 'action'],
+        viewport: {
+            animations: {
+                'idle': {
+                    x: spine_x,
+                    y: spine_y,
+                    width: spine_size,
+                    height: spine_size,
+                    padLeft: "10%",
+                    padRight: "10%",
+                    padTop: "10%",
+                    padBottom: "10%"
+                },
+                'action': {
+                    x: spine_x,
+                    y: spine_y,
+                    width: spine_size,
+                    height: spine_size,
+                    padLeft: "10%",
+                    padRight: "10%",
+                    padTop: "10%",
+                    padBottom: "10%"
+                },
+            }
+        },
+        skin: 'bg',
+        showControls: false,
+        showLoading: false,
+        success: function (player) {
+            player.play();
+        },
+    });
+
+}
+
+window.onload = () => {
+    create_spine_player()
+};
+```
+
+## How to launch
 
 The program make CORS requests to load the files needed, meaning it cannot be launched as is.   The easiest way to make it work locally is by using the extension Live Server in Visual Studio Code.
 
-# Features
+## Features
 
-You can zoom using the scrool wheel, and click + drag to move the animation around the screen.
+You can click to change the animation.
 
-# Json vs Skel
+## Json vs Skel
 
-By default, the program works with .skel files. If you use .json files for your animations, please go to ```js/change_current_animation.js```, uncomment line 27 and comment line 28.
+By default, the program works with .skel files. If you use .json files for your animations, please go to ```js/main.js```, add ```jsonUrl```.
 
-# Credits
+## Credits
 
-Spine web player made by esoteric software, learn more about it at http://esotericsoftware.com/spine-player.  
-Template made by Koshirei https://github.com/Koshirei and used for the Nikke-db website https://github.com/Nikke-db/Nikke-db.github.io.
+Spine web player made by esoteric software, learn more about it at <http://esotericsoftware.com/spine-player>.
+
+Fork from template made by Koshirei <https://github.com/Koshirei> and the template is used for the Nikke-db website <https://github.com/Nikke-db/Nikke-db.github.io>.
