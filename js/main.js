@@ -4,6 +4,7 @@ let current_spine;
 let spine_size = 1500;
 let spine_x = -500;
 let spine_y = 700;
+let isAnimating = false;
 
 const create_spine_player = () => {
 
@@ -57,13 +58,19 @@ window.onload = () => {
 
 // delete the following code if you don't wanna click to change animation
 document.getElementById('player-container').addEventListener('click', function (event) {
-    change_animation();
+    if (!isAnimating) {
+        isAnimating = true;
+        change_animation();
+    }
 });
 
 const change_animation = async () => {
     let entry = current_spine.setAnimation('action');
     await sleep(entry.animationEnd - 0.21);
-    current_spine.setAnimation('idle');
+    if (isAnimating) {
+        isAnimating = false;
+        current_spine.setAnimation('idle');
+    }
 }
 
 function sleep(seconds) {
