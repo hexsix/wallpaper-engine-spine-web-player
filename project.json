@@ -1,0 +1,55 @@
+{
+	"title" : "Nikke | Sakura: Bloom in Summer | 樱花：夏日绽放",
+	"contentrating" : "Questionable",
+	"description" : "Click it!\n真实的 live2d 引擎，点击可交互。",
+  "file": "index.html",
+	"general" : 
+	{
+		"properties" : 
+		{
+			"schemecolor" : 
+			{
+				"order" : 0,
+				"text" : "ui_browse_properties_scheme_color",
+				"type" : "color",
+				"value" : "0.6705882352941176 0.21176470588235294 0.1843137254901961"
+			},
+      "character_scale": {
+        "order": 0,
+        "text": "ui_character_scale",
+        "type": "slider",
+        "value": 1.0,
+        "min": 0.3,
+        "max": 3.0,
+        "step": 0.1
+      },
+      "character_x": {
+        "order": 1,
+        "text": "ui_character_x",
+        "type": "slider",
+        "value": 0,
+        "min": -100,
+        "max": 100,
+        "step": 5
+      },
+      "character_y": {
+        "order": 2,
+        "text": "ui_character_y",
+        "type": "slider",
+        "value": 0,
+        "min": -100,
+        "max": 100,
+        "step": 5
+      }
+    }
+  },
+	"preview" : "preview.gif",
+	"ratingsex" : "mild",
+	"tags" : [ "Game" ],
+  "type": "web",
+  "visibility": "private",
+	"ratingviolence" : "none",
+  "workshopid": 3299699584,
+  "workshopurl": "",
+	"version" : 0
+}
